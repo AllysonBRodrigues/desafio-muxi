@@ -11,7 +11,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "rodrigues.allyson.desafio.muxi.com.br.feiradafruta"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -26,23 +26,38 @@ android {
 
     productFlavors {
         prod {
-            buildConfigField 'String', 'API_HOST', '" https://raw.githubusercontent.com/muxidev"'
+            buildConfigField 'String', 'API_HOST', '" https://raw.githubusercontent.com/muxidev/"'
         }
     }
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/resources'] } }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:28.0.0-beta01'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.8.47'
+    androidTestImplementation 'org.mockito:mockito-inline:2.8.9'
+    androidTestImplementation('com.nhaarman:mockito-kotlin:1.5.0') {
+        exclude group: 'org.jetbrains.kotlin'
+        exclude group: 'org.mockito'
+    }
+    //noinspection GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-v4:27.1.1'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+
 
 }
