@@ -1,18 +1,23 @@
 package rodrigues.allyson.desafio.muxi.com.br.feiradafruta.view.activity
 
+import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
 import rodrigues.allyson.desafio.muxi.com.br.feiradafruta.R
+import rodrigues.allyson.desafio.muxi.com.br.feiradafruta.R.id.real_price
 import rodrigues.allyson.desafio.muxi.com.br.feiradafruta.model.Fruit
+import rodrigues.allyson.desafio.muxi.com.br.feiradafruta.services.ConvertValueInterface
+import rodrigues.allyson.desafio.muxi.com.br.feiradafruta.services.Services
 import rodrigues.allyson.desafio.muxi.com.br.feiradafruta.util.Constants
 import rodrigues.allyson.desafio.muxi.com.br.feiradafruta.util.FormatUtils
 import rodrigues.allyson.desafio.muxi.com.br.feiradafruta.util.StringUtils
 
 
-class DetailsActivity : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity(), ConvertValueInterface {
 
     private lateinit var fruit: Fruit
 
@@ -31,12 +36,22 @@ class DetailsActivity : AppCompatActivity() {
         if (fruit.image.isNotEmpty()) {
             Picasso.get()
                     .load(fruit.image)
+                    .placeholder(R.drawable.placeholder)
                     .fit()
                     .into(image)
         }
         name.text = StringUtils().upcaseFirstChar(fruit.name)
         price.text = FormatUtils().formatDolar(fruit.price)
-        real_price.text = FormatUtils().formatReal(fruit.price * 3.5)
+
+        Services(this).convert(fruit.price)
+    }
+
+    override fun valueConvert(value: Double?) {
+        if(value != null) {
+            real_price.text = FormatUtils().formatReal(value)
+        }else{
+            real_price.text = FormatUtils().formatReal(0.0)
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -44,4 +59,8 @@ class DetailsActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return super.onSupportNavigateUp()
+    }
 }

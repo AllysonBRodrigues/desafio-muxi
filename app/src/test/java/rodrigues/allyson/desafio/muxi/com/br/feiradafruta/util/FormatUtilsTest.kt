@@ -11,11 +11,8 @@ class FormatUtilsTest {
 
     @Test
     fun formatDolar() {
-
         assertEquals("$ 100,00", formatUtils.formatDolar(value))
-
     }
-
     @Test
     fun formatReal() {
         assertEquals("R$ 100,00", formatUtils.formatReal(value))

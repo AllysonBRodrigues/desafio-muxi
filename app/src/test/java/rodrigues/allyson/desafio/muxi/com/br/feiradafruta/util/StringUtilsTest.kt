@@ -11,7 +11,6 @@ class StringUtilsTest {
 
     @Test
     fun upcaseFirstChar() {
-
         assertEquals("Apple", stringUtils.upcaseFirstChar(string))
         assertNotEquals("apple", stringUtils.upcaseFirstChar(string))
     }

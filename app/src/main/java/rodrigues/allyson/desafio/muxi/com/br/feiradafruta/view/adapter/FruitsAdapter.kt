@@ -34,6 +34,7 @@ class FruitsAdapter(val context: Context, val listFruits: MutableList<Fruit>, va
         if(listFruits[position].image.isNotEmpty()){
             Picasso.get()
                     .load(listFruits[position].image)
+                    .placeholder(R.drawable.placeholder)
                     .fit()
                     .into(holder.image)
         }
