@@ -6,14 +6,14 @@ class FormatUtils {
 
     fun formatDolar(price: Double): String{
 
-        var format = DecimalFormat("#0.00")
+        val format = DecimalFormat("#0.00")
         return "$ ${format.format(price)}"
 
     }
 
     fun formatReal(price: Double): String{
 
-        var format = DecimalFormat("#0.00")
+        val format = DecimalFormat("#0.00")
         return "R$ ${format.format(price)}"
 
     }

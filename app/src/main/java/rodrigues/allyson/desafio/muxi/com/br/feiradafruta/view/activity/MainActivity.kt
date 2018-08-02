@@ -55,9 +55,9 @@ class MainActivity : AppCompatActivity(), View, ItemClickListener {
     private fun createList() {
         val layoutManager = LinearLayoutManager(this)
 
-        list_fruits.setLayoutManager(layoutManager)
+        list_fruits.layoutManager = layoutManager
         val adapter = FruitsAdapter(this, this.listFruits, this)
-        list_fruits.setAdapter(adapter)
+        list_fruits.adapter = adapter
 
         list_fruits.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(), View, ItemClickListener {
     }
 
     override fun itemClick(position: Int) {
-        var intent = Intent(this, DetailsActivity::class.java)
+        val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra(Constants.Params.FRUIT_DETAIL, Gson().toJson(this.listFruits[position]))
         startActivity(intent)
     }
